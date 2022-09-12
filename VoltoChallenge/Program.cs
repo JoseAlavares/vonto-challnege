@@ -22,7 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+// Use case: create a car with a type of client
 app.MapPost("/car", async(RecordAuto nuevoAuto, AutoContext db) =>
 {
     if (nuevoAuto.tipo is null || string.IsNullOrEmpty(nuevoAuto.tipo) || nuevoAuto.placa is null || string.IsNullOrEmpty(nuevoAuto.placa))
@@ -62,6 +62,7 @@ app.MapPost("/car", async(RecordAuto nuevoAuto, AutoContext db) =>
     }
 });
 
+// Use case registar an access in the parking
 app.MapPost("/car-in", async (RecordPlaca placa, AutoContext db) =>
 {
     if (placa.placa is null || string.IsNullOrEmpty(placa.placa))
@@ -114,6 +115,7 @@ app.MapPost("/car-in", async (RecordPlaca placa, AutoContext db) =>
     }
 });
 
+// Use case: restart month
 app.MapPut("/restart-month", async (AutoContext db) =>
 {
     try
@@ -141,6 +143,7 @@ app.MapPut("/restart-month", async (AutoContext db) =>
     }
 });
 
+// Use case: register a exit from the parking
 app.MapPut("/car-out", async (string placa, AutoContext db) =>
 {
     if (placa is null || string.IsNullOrEmpty(placa))
@@ -185,7 +188,7 @@ app.MapPut("/car-out", async (string placa, AutoContext db) =>
     }
 });
 
-// Query the payment by the parameter placa
+//Use case: get a report for the payments
 app.MapGet("/payment", async (AutoContext db) =>
 {
     try
