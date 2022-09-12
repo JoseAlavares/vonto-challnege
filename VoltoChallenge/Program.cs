@@ -199,7 +199,6 @@ app.MapGet("/payment", async (AutoContext db) =>
             join registro in db.RegistroEntradas on auto.id equals registro.id_auto
             where (tipo.id == 2 || tipo.id == 3) && registro.activo == true
             select new { auto.id, auto.placa, auto.total_minutos, tipo.nombre, registro.entrada, registro.salida, tipo.tarifa, id_registro = registro.id }
-            //select new { auto, tipo, registro }
         ).ToArray();
 
         if (autos is null)
